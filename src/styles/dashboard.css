@@ -1,0 +1,243 @@
+/* ── Header ───────────────────────────────────────── */
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.dash-header h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+.dash-header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.confirm-clear {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+/* ── Layout ───────────────────────────────────────── */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.dash-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dash-right {
+  position: sticky;
+  top: 90px;
+}
+
+/* ── Section ──────────────────────────────────────── */
+.dash-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.dash-section-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Insight Cards ────────────────────────────────── */
+.insight-card {
+  text-align: center;
+  transition: transform var(--transition-normal);
+}
+
+.insight-card:hover { transform: translateY(-4px); }
+
+.insight-card--best  { border-color: rgba(34,197,94,0.25);  background: rgba(34,197,94,0.04);  }
+.insight-card--worst { border-color: rgba(239,68,68,0.25);  background: rgba(239,68,68,0.04);  }
+
+.insight-icon  { font-size: 1.75rem; margin-bottom: 0.5rem; }
+.insight-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.4rem; }
+.insight-cat   { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
+.insight-score { font-size: 1.6rem; font-weight: 900; font-family: 'JetBrains Mono', monospace; }
+
+/* ── Trend Chart ──────────────────────────────────── */
+.trend-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 160px;
+  padding-top: 2rem;
+}
+
+.trend-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 0.3rem;
+}
+
+.trend-score-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+
+.trend-bar-track {
+  flex: 1;
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm) var(--radius-sm) 2px 2px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.trend-bar-fill {
+  width: 100%;
+  border-radius: var(--radius-sm) var(--radius-sm) 2px 2px;
+  height: 0;
+  animation: trendFill 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes trendFill {
+  from { height: 0; opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
+.trend-date {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* ── History Panel ────────────────────────────────── */
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.history-list {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-fast);
+}
+
+.history-row:last-child { border-bottom: none; }
+
+.history-row:hover { background: var(--bg-card-hover); }
+
+.history-grade {
+  font-size: 1.25rem;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  min-width: 2.2rem;
+  text-align: center;
+}
+
+.history-main { flex: 1; min-width: 0; }
+
+.history-cat {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.history-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.history-score-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.history-score {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.history-fraction {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ── Empty State ──────────────────────────────────── */
+.dash-empty {
+  padding: 5rem 2rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.dash-empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-right { position: static; }
+  .history-list { max-height: 400px; }
+}
+
+@media (max-width: 560px) {
+  .trend-chart { gap: 0.3rem; }
+  .trend-score-label { display: none; }
+}
