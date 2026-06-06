@@ -85,8 +85,8 @@ export default function HomePage() {
         {/* ── Hero Section ── */}
         <section className="home-hero">
           <h1 className="hero-title">
-            Level Up Your<br />
-            <span className="gradient-text">Dev Knowledge</span>
+            Level Up Your Knowledge<br />
+            
           </h1>
           <p className="hero-subtitle">
             Take curated tech quizzes, track your progress, and discover your

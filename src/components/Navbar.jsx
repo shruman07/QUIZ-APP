@@ -1,8 +1,8 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar() {
-  const location = useLocation();
+  
 
   const links = [
     { to: "/",         label: "Home",      icon: "⌂" },

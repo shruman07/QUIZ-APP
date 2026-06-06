@@ -15,7 +15,7 @@
   display: block;
   width: 100%;
   text-align: center;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: clamp(3rem, 19.5vw, 99rem);
   font-weight: 900;
   line-height: 1;
