@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 /**
  * Countdown timer hook
@@ -10,7 +10,6 @@ export function useTimer(seconds, onExpire) {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
   const onExpireRef = useRef(onExpire);
-  const initialSeconds = useRef(seconds);
 
   // Keep the callback ref current
   useEffect(() => {
@@ -30,8 +29,7 @@ export function useTimer(seconds, onExpire) {
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
+          clear();
           setIsRunning(false);
           onExpireRef.current?.();
           return 0;
@@ -48,21 +46,20 @@ export function useTimer(seconds, onExpire) {
 
   const reset = useCallback((newSeconds) => {
     clear();
-    const s = newSeconds ?? initialSeconds.current;
+    const s = newSeconds ?? seconds;
     setTimeLeft(s);
     setIsRunning(false);
-  }, []);
+  }, [seconds]);
 
   const restart = useCallback((newSeconds) => {
-    const s = newSeconds ?? initialSeconds.current;
+    const s = newSeconds ?? seconds;
     setTimeLeft(s);
     clear();
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
+          clear();
           setIsRunning(false);
           onExpireRef.current?.();
           return 0;
@@ -70,11 +67,14 @@ export function useTimer(seconds, onExpire) {
         return prev - 1;
       });
     }, 1000);
-  }, []);
+  }, [seconds]);
 
   useEffect(() => () => clear(), []);
 
-  const progress = (timeLeft / (initialSeconds.current || seconds)) * 100;
+  // ✅ Use useMemo instead of reading ref in render
+  const progress = useMemo(() => {
+    return (timeLeft / seconds) * 100;
+  }, [timeLeft, seconds]);
 
   return { timeLeft, isRunning, progress, start, stop, reset, restart };
 }
