@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TECH_CATEGORIES, DIFFICULTIES, fetchQuestions } from "../utils/api";
-import { useQuiz } from "../context/QuizContext";
+import { useQuiz } from "../hooks/useQuiz";
 import "../styles/setup.css";
 
 export default function SetupPage() {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useQuiz } from "../context/QuizContext";
+import { useQuiz } from "../hooks/useQuiz";
 import { useQuizStorage } from "../hooks/useQuizStorage";
 import { generateId } from "../utils/storage";
 import { getGrade } from "../utils/stats";
