@@ -90,7 +90,7 @@ export default function HomePage() {
           </h1>
           <p className="hero-subtitle">
             Take curated tech quizzes, track your progress, and discover your
-            strengths and weaknesses across key computer science topics.
+            strengths and weaknesses
           </p>
           <div className="hero-actions">
             <Link to="/setup" className="btn btn-primary btn-lg">
