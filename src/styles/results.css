@@ -112,9 +112,6 @@
   flex-wrap: wrap;
 }
 
-/* ── Wrong Answers ────────────────────────────────── */
-.results-wrong { }
-
 .wrong-list {
   display: flex;
   flex-direction: column;
