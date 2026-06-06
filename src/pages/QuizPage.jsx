@@ -15,7 +15,7 @@ export default function QuizPage() {
 
   const currentQuestion = questions[currentIndex];
 
-  // Auto-advance to next question
+  // Auto-advance to next question when timer expires
   const handleExpire = useCallback(() => {
     if (!revealed) {
       skipQuestion();
@@ -40,12 +40,22 @@ export default function QuizPage() {
     }
   }, [isFinished, navigate]);
 
-  // Restart timer every new question
+  // Restart timer when question changes
   useEffect(() => {
-    setSelected(null);
-    setRevealed(false);
-    if (currentQuestion) restart(QUESTION_TIME);
-  }, [currentIndex, currentQuestion]);
+    if (currentQuestion) {
+      restart(QUESTION_TIME);
+    }
+  }, [currentIndex, currentQuestion, restart]);
+
+  // Reset local state when question changes (use layout effect to avoid warning)
+  useEffect(() => {
+    // schedule reset after render, not synchronously
+    const id = setTimeout(() => {
+      setSelected(null);
+      setRevealed(false);
+    }, 0);
+    return () => clearTimeout(id);
+  }, [currentIndex]);
 
   function handleAnswer(answer) {
     if (revealed) return;
@@ -61,7 +71,7 @@ export default function QuizPage() {
 
   if (!currentQuestion) return null;
 
-  const progressPct = ((currentIndex) / questions.length) * 100;
+  const progressPct = (currentIndex / questions.length) * 100;
   const timerDanger = timeLeft <= 5;
 
   return (
@@ -88,17 +98,21 @@ export default function QuizPage() {
               </svg>
               <span className="timer-text">{timeLeft}</span>
             </div>
-            <button className="btn btn-ghost btn-sm" onClick={() => { resetQuiz(); navigate("/setup"); }}>
+            <button
+              className="btn btn-ghost btn-sm"
+              onClick={() => {
+                resetQuiz();
+                navigate("/setup");
+              }}
+            >
               ✕ Quit
             </button>
           </div>
 
-          
           <div className="quiz-bar-track">
             <div className="quiz-bar-fill" style={{ width: `${progressPct}%` }} />
           </div>
 
-          
           <div className="quiz-card card card-padding-lg">
             <div className="quiz-category-badge badge badge-accent">
               {currentQuestion.category}
@@ -106,7 +120,6 @@ export default function QuizPage() {
 
             <h2 className="quiz-question">{currentQuestion.question}</h2>
 
-            
             <div className="quiz-answers">
               {currentQuestion.allAnswers.map((answer, i) => {
                 let cls = "answer-btn";
@@ -139,12 +152,13 @@ export default function QuizPage() {
             </div>
           </div>
 
-          
           {!revealed && (
             <div className="quiz-skip-row">
               <button
                 className="btn btn-ghost btn-sm"
-                onClick={() => { skipQuestion(); }}
+                onClick={() => {
+                  skipQuestion();
+                }}
               >
                 Skip →
               </button>
