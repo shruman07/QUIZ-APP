@@ -80,7 +80,7 @@ export default function ResultsPage() {
             </div>
 
             <div className="results-title-block">
-              <h1>{score >= 70 ? "Great Work! 🎉" : score >= 50 ? "Good Effort! 💪" : "Keep Practicing! 🔁"}</h1>
+              <h1>{score >= 70 ? "Great Work!" : score >= 50 ? "Good Effort!" : "Keep Practicing!"}</h1>
               <p className="results-subtitle">
                 {category?.name} · <span className={`badge badge-${difficulty}`}>{difficulty}</span>
               </p>
@@ -90,17 +90,14 @@ export default function ResultsPage() {
           {/* ── Stat Cards ── */}
           <div className="results-stats grid-3">
             <div className="card card-padding text-center">
-              <div className="rs-icon">✅</div>
               <div className="rs-value" style={{ color: "var(--green)" }}>{correctCount}</div>
               <div className="rs-label">Correct</div>
             </div>
             <div className="card card-padding text-center">
-              <div className="rs-icon">❌</div>
               <div className="rs-value" style={{ color: "var(--red)" }}>{questions.length - correctCount}</div>
               <div className="rs-label">Wrong</div>
             </div>
             <div className="card card-padding text-center">
-              <div className="rs-icon">📋</div>
               <div className="rs-value">{questions.length}</div>
               <div className="rs-label">Total</div>
             </div>
@@ -113,10 +110,10 @@ export default function ResultsPage() {
               onClick={handleSave}
               disabled={saved}
             >
-              {saved ? "✓ Saved to History" : "💾 Save to History"}
+              {saved ? "✓ Saved to History" : "Save to History"}
             </button>
             <button className="btn btn-secondary" onClick={handleRetry}>
-              🔁 Try Again
+               Try Again
             </button>
             <Link to="/dashboard" className="btn btn-ghost">
               ◈ Dashboard
@@ -127,7 +124,7 @@ export default function ResultsPage() {
           {wrongAnswers.length > 0 && (
             <section className="results-wrong">
               <h2 className="section-title mb-3">
-                ❌ Questions to Review ({wrongAnswers.length})
+                 Questions to Review ({wrongAnswers.length})
               </h2>
               <div className="wrong-list">
                 {wrongAnswers.map((item, i) => (
