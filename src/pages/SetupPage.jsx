@@ -38,7 +38,6 @@ export default function SetupPage() {
         <div className="setup-wrapper">
           {/* ── Header ── */}
           <div className="setup-header text-center">
-            <div className="badge badge-accent mb-2">New Quiz</div>
             <h1>Configure Your Quiz</h1>
             <p className="mt-1">Choose a category and difficulty to get 10 tailored questions</p>
           </div>
@@ -48,7 +47,6 @@ export default function SetupPage() {
             {/* Category */}
             <div className="form-group">
               <label className="form-label">
-                <span className="form-label-icon">📂</span>
                 Category
               </label>
               <div className="select-wrapper">
@@ -70,7 +68,6 @@ export default function SetupPage() {
             {/* Difficulty */}
             <div className="form-group">
               <label className="form-label">
-                <span className="form-label-icon">⚡</span>
                 Difficulty
               </label>
               <div className="difficulty-grid">
@@ -126,11 +123,9 @@ export default function SetupPage() {
           {/* ── Tips ── */}
           <div className="setup-tips">
             <div className="tip-card card card-padding">
-              <span className="tip-icon">💡</span>
               <span>You have <strong>20 seconds</strong> per question. Unanswered questions count as wrong.</span>
             </div>
             <div className="tip-card card card-padding">
-              <span className="tip-icon">💾</span>
               <span>Save results after the quiz to track your progress on the dashboard.</span>
             </div>
           </div>
